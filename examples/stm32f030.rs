@@ -3,7 +3,6 @@
 #![no_std]
 #![no_main]
 
-use hal::{gpio, delay};
 use panic_rtt_target as _;
 
 use stm32f0xx_hal as hal;
@@ -39,6 +38,8 @@ fn main() -> ! {
     let i2c = I2c::i2c1(p.I2C1, (scl, sda), 100.khz(), &mut rcc) ;
     
     let mut rtc = PCF8563::new(i2c) ;
+    
+    rtc.set_datetime(DateTime::default()).unwrap() ;
 
     loop {
         match rtc.get_datetime() {
