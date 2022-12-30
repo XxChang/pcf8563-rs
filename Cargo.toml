@@ -1,5 +1,11 @@
 [package]
+authors = ["Chang Xu <xuxchang@hotmail.com>"]
+categories = ["embedded-hal-driver", "embedded", "hardware-support", "no-std"]
+description = "A platform agnostic driver to interface with the PCF8563 real-time clock"
+keywords = ["embedded-hal", "embedded-hal-driver", "rtc"]
+license = "MIT OR Apache-2.0"
 name = "pcf8563"
+repository = "https://github.com/XxChang/pcf8563-rs"
 version = "0.1.0"
 edition = "2018"
 

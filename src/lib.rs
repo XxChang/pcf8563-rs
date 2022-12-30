@@ -1,3 +1,7 @@
+//! A platform agnostic driver to interface with the PCF8563 real-time clock.
+//!
+//!
+
 #![no_std]
 
 mod datetime;

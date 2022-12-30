@@ -4,6 +4,10 @@
 
 ## Usage
 
+```sh
+$ cargo embed --example stm32f030
+```
+
 ## License
 
 Licensed under either of
