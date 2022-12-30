@@ -1,5 +1,5 @@
 [default.general]
-chip = "STM32F103C8" # uncomment this line for micro:bit V2
+chip = "STM32F030C8Tx"
 
 [default.reset]
 halt_afterwards = false
