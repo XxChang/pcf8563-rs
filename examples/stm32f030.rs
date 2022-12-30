@@ -18,11 +18,13 @@ use rtt_target::{rprintln, rtt_init_print};
 #[entry]
 fn main() -> ! {
     rtt_init_print!() ;
+
     let p = pac::Peripherals::take().unwrap() ;
 
-    let cp =cortex_m::Peripherals::take().unwrap() ;
+    let cp = cortex_m::Peripherals::take().unwrap() ;
 
     let mut flash = p.FLASH ;
+
     let mut rcc = p.RCC.configure().freeze(&mut flash) ;
 
     let mut delay = Delay::new(cp.SYST, &rcc);
@@ -31,9 +33,8 @@ fn main() -> ! {
 
     let (sda, scl) = cortex_m::interrupt::free(move |cs| {
                     (gpiob.pb9.into_alternate_af1(cs),
-                    
-                    gpiob.pb8.into_alternate_af1(cs))
-            } ) ;
+                     gpiob.pb8.into_alternate_af1(cs))
+    } ) ;
     
     let i2c = I2c::i2c1(p.I2C1, (scl, sda), 100.khz(), &mut rcc) ;
     
@@ -44,10 +45,10 @@ fn main() -> ! {
     loop {
         match rtc.get_datetime() {
             Ok(datetime) => {
-                rprintln!("{}-{:02}-{:02} {:02}:{:02}:{:02}", datetime.year, datetime.mon, datetime.mday, datetime.hour, datetime.min, datetime.sec);
+                rprintln!("{}-{:02}-{:02} {:02}:{:02}:{:02}", datetime.year, datetime.mon, datetime.mday, datetime.hour, datetime.min, datetime.sec) ;
             },
             Err(error) => {
-                rprintln!("Could not read pcf8563 due to error: {:?}", error);
+                rprintln!("Could not read pcf8563 due to error: {:?}", error) ;
             }
         }
         delay.delay_ms(1_000_u16) ;
